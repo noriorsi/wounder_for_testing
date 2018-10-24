@@ -68,7 +68,6 @@ state_enum No_Event_Handler(void){
 
 			}
 
-
 		default: break;
 	}
 	return state; //return the same state
@@ -91,7 +90,8 @@ state_enum Stop_Event_Handler(void){
  * Error event handler
  *************************************************************/
 state_enum Error_Event_Handler(void){
-	MODE2_active = false;
+	//MODE2_active = false;
+
 	event = NO_EVENT;
 	return Stop_Event_Handler();
 }

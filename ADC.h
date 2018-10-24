@@ -46,6 +46,7 @@
 #define ADC_12BIT_MAX           4096            /* 2^12 */
 
 #define VMCU			3.3
+#define VREF			1.25
 #define	ADC_MAX_VALUE	4096.0
 #define VBAT			3.0
 #define ADC_SCAN_CH_NUMBER      5
@@ -68,7 +69,7 @@ void adcReset(void);
 void rtcSetup(void);
 void adcTImerPrs(void);
 void adcTimerPrsSetup(void);
-uint32_t ADC_Calibration(ADC_TypeDef *adc, ADC_Ref_TypeDef ref);
+void ADC_Calibration(void);
 void adcDmaSetup(void);
 uint32_t adcScanDma(unsigned channel);
 uint32_t GetADCvalue_Force(unsigned channel);

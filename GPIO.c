@@ -85,7 +85,7 @@ static void InitADC_GPIO(){
 	SetGPIO_struct(ADC[0], ADC0_PORT, ADC0_PIN, gpioModeInput, 0, false);
 	SetGPIO_struct(ADC[1], ADC1_PORT, ADC1_PIN, gpioModeInput, 0, false);
 	SetGPIO_struct(ADC[2], ADC2_PORT, ADC2_PIN, gpioModeInput, 0, false);
-	//SetGPIO_struct(ADC[3], ADC3_PORT, ADC3_PIN, gpioModeInput, 0, false);
+	SetGPIO_struct(ADC[3], ADC3_PORT, ADC3_PIN, gpioModeInput, 0, false);
 	SetGPIO_struct(ADC[4], ADC4_PORT, ADC4_PIN, gpioModeInput, 0, false);
 
 }

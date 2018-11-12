@@ -100,6 +100,7 @@ uint32_t adcScanDma(unsigned channel)
   sampleBuffer[2] = (sampleBuffer[2] * ADC_SE_VFS_X1000) / ADC_12BIT_MAX;
   sampleBuffer[3] = (sampleBuffer[3] * ADC_SE_VFS_X1000) / ADC_12BIT_MAX;
   sampleBuffer[4] = (sampleBuffer[4] * ADC_SE_VFS_X1000) / ADC_12BIT_MAX;
+  sampleBuffer[5] = (sampleBuffer[5] * ADC_SE_VFS_X1000) / ADC_12BIT_MAX;
   //adcReset();
   return sampleBuffer[channel];
 
@@ -113,8 +114,8 @@ uint32_t adcScanDma(unsigned channel)
 uint32_t GetADCvalue(void) {
 
 	ADC_InitScan_TypeDef scanInit = ADC_INITSCAN_DEFAULT;
-	scanInit.reference = adcRefVDD;
-	scanInit.input     = ADC_SCANCTRL_INPUTMASK_CH4;
+	scanInit.reference = adcRef1V25;
+	scanInit.input     = ADC_SCANCTRL_INPUTMASK_CH0;
 	ADC_InitScan(ADC0, &scanInit);
 	ADC_Start(ADC0, adcStartScan);
 
@@ -151,12 +152,14 @@ uint32_t GetADCvalue_Force(unsigned channel) {
 	case ADC_FORCE2: input_channel_mask = ADC_SCANCTRL_INPUTMASK_CH6;
 	//sample = ADC_DataScanGet(ADC0);
 		break;
-	//case ADC_FORCE3:input_channel_mask = ADC_SCANCTRL_INPUTMASK_CH7;
+	case ADC_FORCE3: input_channel_mask = ADC_SCANCTRL_INPUTMASK_CH7;
 	//sample = ADC_DataScanGet(ADC0);
-		//break;
+		break;
 	case ADC_FORCE4: input_channel_mask = ADC_SCANCTRL_INPUTMASK_CH0;
 	//sample = ADC_DataScanGet(ADC0);
 		break;
+	case ADC_BATTERY: input_channel_mask = ADC_SCANCTRL_INPUTMASK_CH1;
+	break;
 	default:
 		input_channel_mask = ADC_SCANCTRL_INPUTMASK_DEFAULT; break;
 

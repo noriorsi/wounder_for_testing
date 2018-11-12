@@ -18,7 +18,7 @@
 #include "Modes.h"
 
 #define DMA_CHANNEL    0
-#define NUM_SAMPLES    5
+#define NUM_SAMPLES    6
 #define LFRCOFREQ 32768
 #define ADC_BUFFER_SIZE	64
 
@@ -49,7 +49,7 @@
 #define VREF			1.25
 #define	ADC_MAX_VALUE	4096.0
 #define VBAT			3.0
-#define ADC_SCAN_CH_NUMBER      5
+#define ADC_SCAN_CH_NUMBER      6
 
 //#define RESISTOR1		10.0
 //#define RESISTOR2		33.0

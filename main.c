@@ -29,7 +29,7 @@ int main(void)
   InitEmulatedEEPROM();
   InitRTC();
   //InitFlash();
-  FlashLeds(3);
+  FlashLeds(1);
   InitRFduinoUART();
   EnterPowerSaving();
 

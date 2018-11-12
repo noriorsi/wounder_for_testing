@@ -316,6 +316,16 @@ uint32_t AVG(int n ,int f){
 		return sumforavg/n;
 }
 
+uint32_t AVG_f4(int n){
+
+		uint32_t sumforavg = 0;
+		for(int i=0;i<n;++i){
+			ff[i] = GetADCvalue();
+			sumforavg += ff[i];
+		}
+		return sumforavg/n;
+}
+
 void mesurements_for_testing(int n, int p){
 
 	//ADC_Calibration(ADC0,adcRefVDD);
@@ -327,7 +337,7 @@ void mesurements_for_testing(int n, int p){
 	RFDuino_GiveIT();
 	//send_string("\n");
 	SendEmpty(5);
-	vddVoltage = getVDD(5);
+	//vddVoltage = getVDD(5);
 	//send_double(vddVoltage);
 	for(int i=0;i<n;++i){
 		//SendEmpty(5);
@@ -340,7 +350,11 @@ void mesurements_for_testing(int n, int p){
 		f0 = AVG(5 , 0);
 		f1 = AVG(5 , 1);
 		f2 = AVG(5 , 2);
-		f4 = AVG(5 , 4);
+		f3 = AVG(5 , 3);
+		//f4 = AVG(5 , 4);
+	//	f4 = GetADCvalue();
+		f4 = AVG_f4(5);
+		GetADCvalue_Force(5);
 
 								send_string ("F0 = ");
 								send_double(hgmm(f0));
@@ -350,24 +364,25 @@ void mesurements_for_testing(int n, int p){
 
 									send_string ("F1 = ");
 									send_double(hgmm(f1));
-									temp = ADC_to_Voltage(f1);
-									//if(temp>100) temp = 38;
-									send_double(temp);
+									// just to get voltage value also:
+									send_double(ADC_to_Voltage(f1));
 
 
 									send_string ("F2 = ");
 									send_double(hgmm(f2));
-									temp = ADC_to_Voltage(f2);
-									send_double(temp);
+									// just to get voltage value also:
+									send_double( ADC_to_Voltage(f2));
 
-									//if(temp>100) temp = 35;
-									//send_double(temp);
-									//send_string ("F3 = ");
-									//send_double(20.0);
-									//send_string ("F4 = ");
-									//temp = hgmm(f4);
-									//if(temp>100) temp = 28;
-									//send_double(temp);
+									send_string ("F3 = ");
+									send_double(hgmm(f3));
+									// just to get voltage value also:
+									send_double(ADC_to_Voltage(f3));
+
+									send_string ("F4 = ");
+									send_double(hgmm(f4));
+									// just to get voltage value also:
+									send_double(ADC_to_Voltage(f4));
+
 
 									send_string("\n");
 									SI7021_Measure(&HumData, &TData);

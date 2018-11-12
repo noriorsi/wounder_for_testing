@@ -44,6 +44,7 @@ double quickMeas(uint32_t f);
 double forceing(uint32_t f);
 void mesurements_for_testing(int n, int p);
 uint32_t AVG(int n ,int f);
+uint32_t AVG_f4(int n);
 
 extern double vddVoltage;
 

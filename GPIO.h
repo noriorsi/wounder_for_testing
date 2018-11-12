@@ -77,8 +77,8 @@
 #define 	ADC2_PORT		gpioPortD
 #define 	ADC2_PIN		6
 // Force3
-//#define 	ADC3_PORT		gpioPortD
-//#define 	ADC3_PIN		7
+#define 	ADC3_PORT		gpioPortD
+#define 	ADC3_PIN		7
 // Force4
 #define 	ADC4_PORT		gpioPortE
 #define 	ADC4_PIN		12

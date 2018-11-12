@@ -76,6 +76,7 @@ uint32_t GetADCvalue_Force(unsigned channel);
 double getVDD(unsigned int average);
 double ADC_to_Voltage(uint32_t ADCvalue);
 double Voltage_to_force(double volt);
+uint32_t GetADCvalue_Force4(unsigned channel);
 //double ADC_to_Voltage_forBattery(uint32_t ADCvalue);
 //uint16_t Convert32to16bit(uint32_t source);
 //double BatteryVoltageMeasurement();

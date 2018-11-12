@@ -126,20 +126,12 @@ uint32_t GetADCvalue(void) {
 }
 
 uint32_t GetADCvalue_Force(unsigned channel) {
-	//CMU_ClockEnable(cmuClock_ADC0, true);
-//uint32_t sample;
-//adcReset();
-	 //init.ovsRateSel = adcOvsRateSel16;
-
 
 	ADC_InitScan_TypeDef scanInit = ADC_INITSCAN_DEFAULT;
-
 	//ORIGINAL:
 	//scanInit.reference = adcRefVDD;
-
 	// With 1.25 V reference: in ADC init scan default the ref is 1.25 but just to be sure..
 	scanInit.reference =  adcRef1V25;
-
 	uint32_t input_channel_mask;
 	//while (ADC0->STATUS & ADC_STATUS_SCANACT) ;
 	switch(channel){
@@ -155,6 +147,35 @@ uint32_t GetADCvalue_Force(unsigned channel) {
 	case ADC_FORCE3: input_channel_mask = ADC_SCANCTRL_INPUTMASK_CH7;
 	//sample = ADC_DataScanGet(ADC0);
 		break;
+	case ADC_FORCE4: input_channel_mask = ADC_SCANCTRL_INPUTMASK_CH0;
+	//sample = ADC_DataScanGet(ADC0);
+		break;
+	default:
+		input_channel_mask = ADC_SCANCTRL_INPUTMASK_DEFAULT; break;
+	}
+
+	scanInit.input     = input_channel_mask;
+	scanInit.resolution = ADC_SCANCTRL_RES_OVS;
+	ADC_InitScan(ADC0, &scanInit);
+	ADC_Start(ADC0, adcStartScan);
+	while (ADC0->STATUS & ADC_STATUS_SCANACT) ;
+
+	//ADC_Calibration(ADC0,adcRefVDD);
+	return ADC_DataScanGet(ADC0);
+
+}
+
+
+
+uint32_t GetADCvalue_Force4(unsigned channel) {
+
+
+	ADC_InitScan_TypeDef scanInit = ADC_INITSCAN_DEFAULT;
+	scanInit.reference =  adcRef1V25;
+
+	uint32_t input_channel_mask;
+	switch(channel){
+
 	case ADC_FORCE4: input_channel_mask = ADC_SCANCTRL_INPUTMASK_CH0;
 	//sample = ADC_DataScanGet(ADC0);
 		break;
@@ -175,6 +196,16 @@ uint32_t GetADCvalue_Force(unsigned channel) {
 	return ADC_DataScanGet(ADC0);
 
 }
+
+
+
+
+
+
+
+
+
+
 
 // the analog reading converted to voltage - not used jet
 /*

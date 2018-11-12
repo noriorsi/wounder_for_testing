@@ -316,11 +316,11 @@ uint32_t AVG(int n ,int f){
 		return sumforavg/n;
 }
 
-uint32_t AVG_f4(int n){
+uint32_t AVG_f4(int n, int f){
 
 		uint32_t sumforavg = 0;
 		for(int i=0;i<n;++i){
-			ff[i] = GetADCvalue();
+			ff[i] =  GetADCvalue_Force4(f);
 			sumforavg += ff[i];
 		}
 		return sumforavg/n;
@@ -353,7 +353,7 @@ void mesurements_for_testing(int n, int p){
 		f3 = AVG(5 , 3);
 		//f4 = AVG(5 , 4);
 	//	f4 = GetADCvalue();
-		f4 = AVG_f4(5);
+		f4 = AVG_f4(5 , 4);
 		GetADCvalue_Force(5);
 
 								send_string ("F0 = ");
